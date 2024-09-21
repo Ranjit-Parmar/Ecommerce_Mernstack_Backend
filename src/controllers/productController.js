@@ -62,10 +62,11 @@ export const getAllProducts = asyncErrorHandler(async (req, res, next) => {
 
     // count total products
     const totalProducts = await Product.countDocuments();
+
     // creating reusable class for filtering, sorting, fields limit, search, paginate
     const apiFeatures = new ApiFeatures(Product.find(), req.query).filter().search().sort().fields().pagination();
 
-   
+
     const allProducts = await apiFeatures.query;
 
     res.status(200).json({
@@ -116,7 +117,7 @@ export const getSingleProduct = asyncErrorHandler(async (req, res, next) => {
 
     // check product exists in database or not
     if (!singleProduct) {
-        const err = new customError('No product found', 404);
+        const err = new customError('product not found', 404);
         return next(err);
     }
 
@@ -134,7 +135,7 @@ export const deleteProduct = asyncErrorHandler(async (req, res, next) => {
     const productExists = await Product.findById(id);
     // check product exists in database or not
     if (!productExists) {
-        const err = new customError("no product found with this ID", 404);
+        const err = new customError("product not found", 404);
         return next(err);
     }
 
@@ -161,7 +162,7 @@ export const updateProduct = asyncErrorHandler(async (req, res, next) => {
     const productExists = await Product.findById(id);
     // check product exists in database or not
     if (!productExists) {
-        const err = new customError("no product found with this ID", 404);
+        const err = new customError("product not found", 404);
         return next(err);
     }
     // updating the product

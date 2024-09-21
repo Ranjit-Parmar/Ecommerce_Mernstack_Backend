@@ -18,7 +18,7 @@ export const createCoupon = asyncErrorHandler(async(req,res,next)=>{
         expire
     })
 
-    res.status(200).json({
+    res.status(201).json({
         success : true,
         message : "coupon created succesfully"
     })

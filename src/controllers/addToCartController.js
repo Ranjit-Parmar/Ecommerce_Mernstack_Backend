@@ -29,7 +29,7 @@ export const addToCartController = asyncErrorHandler(async(req,res,next)=>{
     const addedProduct = await addToCart.create({...req.body,user:req.user._id});
     const cartProduct = await addedProduct.populate('product');
    
-    res.status(200).json({
+    res.status(201).json({
         success : true,
         message : 'product added to cart',
         cartProduct

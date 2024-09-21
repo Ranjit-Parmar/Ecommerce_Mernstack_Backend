@@ -74,7 +74,7 @@ export const LoginUser = asyncErrorHandler(async (req, res, next) => {
 
 
     if (!userData) {
-        const err = new customError("you are not register user! Please Signup", 400);
+        const err = new customError("you are not register user! Please Signup", 401);
         return next(err);
     }
 
@@ -82,7 +82,7 @@ export const LoginUser = asyncErrorHandler(async (req, res, next) => {
     const decryptPass = await userData.compareLoginPassword(password, userData.password);
 
     if (!decryptPass) {
-        const err = new customError("Invalid credential", 400);
+        const err = new customError("Invalid credential", 401);
         return next(err);
     }
 
@@ -204,7 +204,7 @@ export const deleteUser = asyncErrorHandler(async(req,res,next)=>{
     const userExist = await User.findById(id);
 
     if(!userExist){
-        const err = new customError("user you are deleting for is not available");
+        const err = new customError("user is not found", 404);
         return next(err);
     }
 
@@ -253,7 +253,7 @@ export const updateUser = asyncErrorHandler(async(req,res,next)=>{
     }
 
     if(!userExist){
-        const err = new customError("user you are updating for is not available");
+        const err = new customError("user is not found",404);
         return next(err);
     }
     
@@ -280,7 +280,7 @@ export const forgotPassword = asyncErrorHandler(async(req,res,next)=>{
     
     
     if(!userExists){
-        const err = new customError("you are not registered user! please sign up",400);
+        const err = new customError("user is not foud",404);
         return next(err);
     }
 

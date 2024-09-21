@@ -42,8 +42,8 @@ export const paymentSuccessController = asyncErrorHandler(async(req,res,next)=>{
 })
 
 export const paymentCancelController = asyncErrorHandler(async(req,res,next)=>{
-    res.status(401).json({
+    res.status(400).json({
         success : false,
-        message : 'payment failed'
+        message : 'payment failed (Bad Request)'
     })
 })
