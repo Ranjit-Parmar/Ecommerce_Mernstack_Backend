@@ -12,7 +12,7 @@ import { deleteImageHelper, uploadImagesHelper } from "../utils/uploadImages.js"
 export const createProduct = asyncErrorHandler(async (req, res, next) => {
     // take input from the user
     const { name, description, category, gender, price, size, photo } = req.body;
-   
+
     // validating the input    
     if (!name | !description | !category | !gender | !price | !size) {
         const err = new customError("Please provide all the fields", 400);
@@ -26,17 +26,17 @@ export const createProduct = asyncErrorHandler(async (req, res, next) => {
 
     let sizeStockValues = JSON.parse(size);
 
-        let arrValues = [];
-        for(let key in sizeStockValues){
-           arrValues.push(sizeStockValues[key]);
-        }
-       let totalStock = arrValues.reduce((acc, current)=> acc + current,0);
-       
-       
+    let arrValues = [];
+    for (let key in sizeStockValues) {
+        arrValues.push(sizeStockValues[key]);
+    }
+    let totalStock = arrValues.reduce((acc, current) => acc + current, 0);
+
+
 
     const imageData = await uploadImagesHelper(photo);
-    
-   
+
+
 
     // create product into the database
     const productData = await Product.create({
@@ -46,7 +46,7 @@ export const createProduct = asyncErrorHandler(async (req, res, next) => {
         gender,
         price: Number(price),
         stock: totalStock,
-        size : sizeStockValues,
+        size: sizeStockValues,
         photo: imageData?.map((val) => val)
     })
 
@@ -56,25 +56,35 @@ export const createProduct = asyncErrorHandler(async (req, res, next) => {
         productData
     })
 })
- 
+
 // GET ALL PRODUCT 
 export const getAllProducts = asyncErrorHandler(async (req, res, next) => {
 
-    // count total products
-    const totalProducts = await Product.countDocuments();
+    // total products per page
+    const productPerPage = process.env.PRODUCT_PER_PAGE;
 
     // creating reusable class for filtering, sorting, fields limit, search, paginate
-    const apiFeatures = new ApiFeatures(Product.find(), req.query).filter().search().sort().fields().pagination();
+    const apiFeatures = new ApiFeatures(Product.find(), req.query).filter().search().sort().fields();
 
+    // get filtered products
+    const filteredProducts = await apiFeatures.query;;
 
-    const allProducts = await apiFeatures.query;
+    // paginate on filtered products
+    apiFeatures.pagination(productPerPage);
+
+    // get total product from the database
+    const allProducts = await apiFeatures.query.clone();
+
+    // calculate totalpages
+    const totalPages = Math.ceil(filteredProducts.length / productPerPage);
 
     res.status(200).json({
         success: true,
-        length: allProducts,
+        length: allProducts.length,
+        totalPages : totalPages,
+        productPerPage : Number(productPerPage),
+        filteredProducts : filteredProducts.length,
         allProducts,
-        totalProducts
-        
     })
 })
 
@@ -141,8 +151,8 @@ export const deleteProduct = asyncErrorHandler(async (req, res, next) => {
 
     // deleting the product
 
-   
-    await deleteImageHelper(productExists.photo.map((val)=>val.public_id));
+
+    await deleteImageHelper(productExists.photo.map((val) => val.public_id));
     await Product.findByIdAndDelete(id);
 
     res.status(200).json({
@@ -167,27 +177,27 @@ export const updateProduct = asyncErrorHandler(async (req, res, next) => {
     }
     // updating the product
     let sizeStockValues = JSON.parse(size);
-    
-        let arrValues = [];
-        for(let key in sizeStockValues){
-           arrValues.push(sizeStockValues[key]);
-        }
-       let totalStock = arrValues.reduce((acc, current)=> acc + current,0);
-       
-       const imageData = await uploadImagesHelper(photo);
-       
-       await deleteImageHelper(productExists.photo.map((val)=>val.public_id));
 
-    await Product.findByIdAndUpdate(id, { 
+    let arrValues = [];
+    for (let key in sizeStockValues) {
+        arrValues.push(sizeStockValues[key]);
+    }
+    let totalStock = arrValues.reduce((acc, current) => acc + current, 0);
+
+    const imageData = await uploadImagesHelper(photo);
+
+    await deleteImageHelper(productExists.photo.map((val) => val.public_id));
+
+    await Product.findByIdAndUpdate(id, {
         name,
         description,
         category: category.toLowerCase(),
         gender,
         price: Number(price),
         stock: totalStock,
-        size : sizeStockValues,
+        size: sizeStockValues,
         photo: imageData?.map((val) => val)
-     }, { new: true });
+    }, { new: true });
     res.status(200).json({
         success: true,
         message: "product updated succesfully",

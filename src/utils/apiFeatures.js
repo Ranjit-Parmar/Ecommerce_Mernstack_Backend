@@ -94,12 +94,11 @@ export class ApiFeatures {
 
     // Pagination Product
 
-    pagination() {
+    pagination(productPerPage) {
         
-        
-        
+       
         const page = this.queryStr.page * 1 || 1;
-        const limit = this.queryStr.limit * 1 || process.env.PRODUCT_PER_PAGE * 1;
+        const limit = this.queryStr.limit * 1 || productPerPage * 1;
         const skip = (page - 1) * limit;
 
         this.query = this.query.limit(limit).skip(skip);
