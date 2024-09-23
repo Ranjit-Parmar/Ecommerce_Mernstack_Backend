@@ -2,10 +2,8 @@ import { Product } from "../models/productSchema.js";
 
 export const updateProductStock = async(product,quantity,size) => {
 
-    // console.log(product,quantity,size);
     try{
         const getProduct = await Product.findById(product);
-        let productSize = await getProduct.size;
        
         getProduct.stock = getProduct.stock - quantity;
     
@@ -15,9 +13,7 @@ export const updateProductStock = async(product,quantity,size) => {
        }
        }
 
-          await getProduct.save({runvalidators:false});
-    
-       
+          await getProduct.save({runvalidators:false}); 
     
     }catch(err){
         console.log(err.message);

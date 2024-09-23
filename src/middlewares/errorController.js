@@ -1,4 +1,3 @@
-import { customError } from "../utils/customError.js"
 
 
 const globalErrorHandler = (error,req,res,next) => {

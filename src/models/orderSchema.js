@@ -24,14 +24,6 @@ const orderSchema = new mongoose.Schema({
         }
     },
     orderItems: {
-            // name:{
-            //     type: String,
-            //     require: true
-            // },
-            // price:{
-            //     type: Number,
-            //     require: true
-            // },
             quantity:{
                 type: Number,
                 require: true
