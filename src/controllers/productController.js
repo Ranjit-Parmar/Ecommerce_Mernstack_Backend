@@ -102,8 +102,7 @@ export const getAllCategories = asyncErrorHandler(async (req, res, next) => {
 
 export const getSingleCategoryProducts = asyncErrorHandler(async (req, res, next) => {
     const gender = req.params.gender;
-    console.log(gender);
-
+    
     const getProducts = await Product.find({ gender });
     if (!getProducts) {
         const err = new customError("products not found", 404);

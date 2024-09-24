@@ -39,9 +39,10 @@ export const createUser = asyncErrorHandler(async (req, res, next) => {
     // generate token
     const jwt_token = await generateAccessToken(userData._id)
     
+    
     const options = {
         expires: new Date(
-          Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
+          Date.now() + Number(process.env.COOKIE_EXPIRE) * 24 * 60 * 60 * 1000
         ),
         // httpOnly: true,
       };
@@ -91,7 +92,7 @@ export const LoginUser = asyncErrorHandler(async (req, res, next) => {
     
     const options = {
         expires: new Date(
-            Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
+            Date.now() + Number(process.env.COOKIE_EXPIRE) * 24 * 60 * 60 * 1000
         ),
         // httpOnly: true,
       };

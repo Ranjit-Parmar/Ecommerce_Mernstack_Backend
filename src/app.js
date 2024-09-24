@@ -26,11 +26,7 @@ process.on("uncaughtException",(err)=>{
 
   
   const port = process.env.PORT || 3000;
-  const app = express();
-  
-  
-  
-  
+  const app = express();  
   
   
 connectDb();

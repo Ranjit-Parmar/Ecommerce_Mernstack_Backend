@@ -11,7 +11,7 @@ export const authentication = asyncErrorHandler(async(req,res,next) => {
     const token =  req.cookies?.token;
     
     if(!token){
-        const err = new customError("you are not logged in, please login",400);
+        const err = new customError("you are not logged in, please login",401);
         next(err);
     }else{
 
@@ -34,7 +34,7 @@ export const authentication = asyncErrorHandler(async(req,res,next) => {
 export const authorization = asyncErrorHandler(async(req,res,next)=>{
     
     if(!(req.user.role === "admin")){
-        const err = new customError("you are not authorized user to access this route");
+        const err = new customError("you are not authorized user to access this route",401);
         return next(err);
     }
         next();

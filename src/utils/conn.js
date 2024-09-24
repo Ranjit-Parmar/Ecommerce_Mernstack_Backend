@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 
 export const connectDb = () => {
-    mongoose.connect(process.env.MONGOURL).then((c)=>console.log(`connected to ${c.connection.host}`))
+  mongoose.connect(process.env.MONGOURL).then((c)=>console.log(`connected to ${c.connection.host}`))
       .catch((e)=>console.log(e));
 } 
 
