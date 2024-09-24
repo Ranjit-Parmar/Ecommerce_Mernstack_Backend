@@ -41,7 +41,8 @@ app.use(cookieParser());
 app.use(morgan('dev'));
 app.use(
     cors({
-        origin: "https://vercel.com/ranjit-parmars-projects/shopping-app",
+        
+        origin: "https://shopping-app-three-ashy.vercel.app",
         // origin: process.env.CLIENT_URL,
         methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
         credentials: true,
