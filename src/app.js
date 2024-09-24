@@ -41,7 +41,8 @@ app.use(cookieParser());
 app.use(morgan('dev'));
 app.use(
     cors({
-        origin: "http://localhost:5173",
+        // origin: "http://localhost:5173",
+        origin: "https://shopeecommerce.vercel.app/",
         methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
         credentials: true,
     })
