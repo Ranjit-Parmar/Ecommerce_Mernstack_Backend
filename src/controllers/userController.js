@@ -44,7 +44,7 @@ export const createUser = asyncErrorHandler(async (req, res, next) => {
         expires: new Date(
           Date.now() + Number(process.env.COOKIE_EXPIRE) * 24 * 60 * 60 * 1000
         ),
-        // httpOnly: true,
+        httpOnly: true,
       };
     
 
@@ -94,7 +94,7 @@ export const LoginUser = asyncErrorHandler(async (req, res, next) => {
         expires: new Date(
             Date.now() + Number(process.env.COOKIE_EXPIRE) * 24 * 60 * 60 * 1000
         ),
-        // httpOnly: true,
+        httpOnly: true,
       };
     
       
