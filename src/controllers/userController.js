@@ -47,6 +47,7 @@ export const createUser = asyncErrorHandler(async (req, res, next) => {
         sameSite : 'none',
         secure : true,
         httpOnly: true,
+        domain : "https://shopping-app-three-ashy.vercel.app"
       };
     
 
@@ -99,6 +100,7 @@ export const LoginUser = asyncErrorHandler(async (req, res, next) => {
         sameSite : 'none',
         secure : true,
         httpOnly: true,
+        domain : "https://shopping-app-three-ashy.vercel.app"
       };
     
       
@@ -132,7 +134,13 @@ export const  activeUser = asyncErrorHandler(async(req,res,next)=>{
 
 export const logOutUser = asyncErrorHandler(async(req,res,next)=>{
     
-    res.clearCookie('token').status(200).json({
+    res.clearCookie('token',{
+        httpOnly : true,
+        sameSite : "none",
+        secure : true,
+        domain : "https://shopping-app-three-ashy.vercel.app"
+
+    }).status(200).json({
         success : true,
         message : 'logout successfully'
     })
