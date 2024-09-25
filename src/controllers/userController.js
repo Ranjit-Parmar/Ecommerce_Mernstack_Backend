@@ -132,17 +132,11 @@ export const  activeUser = asyncErrorHandler(async(req,res,next)=>{
 
 export const logOutUser = asyncErrorHandler(async(req,res,next)=>{
     
-    // res.clearCookie('token').status(200).json({
-    //     success : true,
-    //     message : 'logout successfully'
-    // })
-    res.cookie('token', null, {
-      expires: new Date(Date.now()),
-      httpOnly: true,
-    }).status(200).json({
+    res.clearCookie('token').status(200).json({
         success : true,
         message : 'logout successfully'
     })
+    
      
 })
 
