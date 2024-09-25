@@ -4,7 +4,6 @@ import cors from 'cors';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
-import bodyParser from 'body-parser';
 import userRoute from './routes/userRoute.js';
 import productRoute from './routes/productRoute.js';
 import addToCartRoute from './routes/addToCartRoute.js'

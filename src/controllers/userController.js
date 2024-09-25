@@ -46,7 +46,7 @@ export const createUser = asyncErrorHandler(async (req, res, next) => {
         ),
         sameSite : 'none',
         secure : true,
-        // httpOnly: true,
+        httpOnly: true,
       };
     
 
@@ -98,7 +98,7 @@ export const LoginUser = asyncErrorHandler(async (req, res, next) => {
         ),
         sameSite : 'none',
         secure : true,
-        // httpOnly: true,
+        httpOnly: true,
       };
     
       
