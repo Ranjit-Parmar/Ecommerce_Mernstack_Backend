@@ -75,10 +75,10 @@ app.use('/api/v1/payment', paymentRoute);
 //     next(err);
 // }))
 
-app.use(express.static(path.join(__dirname, "/ecommerce_frontend/build")));
+app.use(express.static(path.join(__dirname, "../ecommerce_frontend/build")));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "ecommerce_frontend", "build", "index.html"));
+  res.sendFile(path.resolve(__dirname, "../ecommerce_frontend/build/index.html"));
 });
 
 app.use(globalErrorHandler);
