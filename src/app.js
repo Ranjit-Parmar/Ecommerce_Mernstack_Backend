@@ -12,6 +12,7 @@ import couponRoute from './routes/couponRoute.js';
 import paymentRoute from './routes/paymentRoute.js';
 import {connectDb} from './utils/conn.js'
 import globalErrorHandler from './middlewares/errorController.js'
+import path from 'path';
 import  {customError}  from './utils/customError.js';
 import asyncErrorHandler from './utils/asyncErrorHandler.js';
 import { v2 as cloudinary } from 'cloudinary';
@@ -47,6 +48,8 @@ app.use(
         credentials: true,
     })
 );
+
+const __dirname = path.resolve(); 
 app.use("/uploads",express.static("uploads"));
 
 // user routing
@@ -67,11 +70,16 @@ app.use('/api/v1/coupon', couponRoute);
 //  payment routing
 app.use('/api/v1/payment', paymentRoute);
 
-app.all("*",asyncErrorHandler(async(req,res,next)=>{
-    const err = new customError(`can't find ${req.originalUrl} on the server`,404);
-    next(err);
-}))
+// app.all("*",asyncErrorHandler(async(req,res,next)=>{
+//     const err = new customError(`can't find ${req.originalUrl} on the server`,404);
+//     next(err);
+// }))
 
+app.use(express.static(path.join(__dirname, "../ecommerce_frontend/build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../ecommerce_frontend/build/index.html"));
+});
 
 app.use(globalErrorHandler);
 
