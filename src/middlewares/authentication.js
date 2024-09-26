@@ -13,7 +13,7 @@ export const authentication = asyncErrorHandler(async(req,res,next) => {
     if(!token){
         const err = new customError("you are not logged in, please login",401);
         next(err);
-    }else{
+    }
 
         // if user hase token then verify token
         const verifyUser = await verifyAccessToken(token);
@@ -22,7 +22,7 @@ export const authentication = asyncErrorHandler(async(req,res,next) => {
         req.user = await User.findById(verifyUser.id);
     
         next()
-    }
+    
 
    
     
