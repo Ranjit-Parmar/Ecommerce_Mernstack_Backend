@@ -70,7 +70,8 @@ app.use(morgan('dev'));
 // });
 
 app.use(cors({
-  origin: "https://shopping-app-three-ashy.vercel.app",
+  // origin: "https://shopping-app-three-ashy.vercel.app",
+  origin: "https://shoppingecommerce-omega.vercel.app",
   methods: ['GET', 'HEAD', 'POST', 'PUT', 'DELETE', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization'], 
   credentials: true,
