@@ -91,7 +91,7 @@ export const LoginUser = asyncErrorHandler(async (req, res, next) => {
     }
 
     // if password is matched then generate token
-    const jwt_token = await generateAccessToken(userData._id)
+    const jwt_token = generateAccessToken(userData._id)
     
     const options = {
         expires: new Date(
