@@ -100,7 +100,7 @@ export const LoginUser = asyncErrorHandler(async (req, res, next) => {
         sameSite : 'none',
         secure : true,
         httpOnly: true,
-        domain : "https://shopping-app-three-ashy.vercel.app"
+        domain : "https://shoppingecommerce-omega.vercel.app"
       };
     
       
@@ -115,19 +115,12 @@ export const LoginUser = asyncErrorHandler(async (req, res, next) => {
 // ACTIVE USER
 
 export const  activeUser = asyncErrorHandler(async(req,res,next)=>{
-    const activeUser = req.user;
-    if(!activeUser){
-        res.status(401).json({
-            success : false,
-            message : 'token expire! please login'
-        })
-    }else{
-        
-        res.status(200).json({
-            success : true,
-            activeUser
-        })
-    }
+    const user = await User.findById(req.user._id);
+
+    res.status(200).json({
+      success: true,
+      user,
+    });
 })
 
 // LOG OUT USER
@@ -138,7 +131,7 @@ export const logOutUser = asyncErrorHandler(async(req,res,next)=>{
         httpOnly : true,
         sameSite : "none",
         secure : true,
-        domain : "https://shopping-app-three-ashy.vercel.app"
+        domain : "https://shoppingecommerce-omega.vercel.app"
 
     }).status(200).json({
         success : true,
