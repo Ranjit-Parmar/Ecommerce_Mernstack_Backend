@@ -12,7 +12,7 @@ export const authentication = asyncErrorHandler(async(req,res,next) => {
     
     if(!token){
         const err = new customError("you are not logged in, please login",401);
-        next(err);
+       return next(err);
     }
 
         // if user hase token then verify token
