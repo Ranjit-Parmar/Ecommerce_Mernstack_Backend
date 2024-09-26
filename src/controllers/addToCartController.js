@@ -6,6 +6,8 @@ import { customError } from '../utils/customError.js';
 export const myCartController = asyncErrorHandler(async(req,res,next)=>{
 
     const userId = req.user._id;
+    console.log(userId);
+    
 
     const cartItem = await addToCart.find({user:userId}).populate('product');
 
