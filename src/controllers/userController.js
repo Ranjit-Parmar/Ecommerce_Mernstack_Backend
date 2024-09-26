@@ -47,7 +47,7 @@ export const createUser = asyncErrorHandler(async (req, res, next) => {
         sameSite : 'none',
         secure : true,
         httpOnly: true,
-        domain : "https://shopping-app-three-ashy.vercel.app"
+        domain : "https://shoppingecommerce-omega.vercel.app"
       };
     
 
