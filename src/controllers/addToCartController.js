@@ -7,7 +7,7 @@ export const myCartController = asyncErrorHandler(async(req,res,next)=>{
 
     const userId = req.user._id;    
 
-    const cartItem = await addToCart.find({user:userId}).populate('product');
+    const cartItem = await addToCart.findById({user:userId}).populate('product');
 
     if(!cartItem){
         const err = new customError('Your cart is empty', 404);
