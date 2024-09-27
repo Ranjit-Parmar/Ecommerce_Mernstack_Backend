@@ -47,7 +47,6 @@ export const createUser = asyncErrorHandler(async (req, res, next) => {
         sameSite : 'none',
         secure : true,
         httpOnly: true,
-        domain : "https://shoppingecommerce-omega.vercel.app"
       };
     
 
@@ -100,7 +99,6 @@ export const LoginUser = asyncErrorHandler(async (req, res, next) => {
         sameSite : 'none',
         secure : true,
         httpOnly: true,
-        domain : "https://shoppingecommerce-omega.vercel.app"
       };
     
       
@@ -131,7 +129,6 @@ export const logOutUser = asyncErrorHandler(async(req,res,next)=>{
         httpOnly : true,
         sameSite : "none",
         secure : true,
-        domain : "https://shoppingecommerce-omega.vercel.app"
 
     }).status(200).json({
         success : true,
