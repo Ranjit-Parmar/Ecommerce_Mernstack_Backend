@@ -42,7 +42,7 @@ app.use(morgan('dev'));
 app.use(
     cors({
         
-        origin: "https://shoppingecommerce-omega.vercel.app",
+        origin: ["https://shoppingecommerce-omega.vercel.app"],
         // origin:  "https://localhost:5173",
         methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
         credentials: true,
