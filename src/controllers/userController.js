@@ -113,12 +113,18 @@ export const LoginUser = asyncErrorHandler(async (req, res, next) => {
 // ACTIVE USER
 
 export const  activeUser = asyncErrorHandler(async(req,res,next)=>{
-    const user = await User.findById(req.user._id);
-
-    res.status(200).json({
-      success: true,
-      user,
-    });
+    const activeUser = req.user;
+    if(!activeUser){
+        res.status(401).json({
+            success : false,
+            message : 'token expire! please login'
+        })
+    }else{
+        res.status(200).json({
+            success : true,
+            activeUser
+        })
+    }
 })
 
 // LOG OUT USER
