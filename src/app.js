@@ -70,8 +70,8 @@ app.use('/api/v1/coupon', couponRoute);
 //  payment routing
 app.use('/api/v1/payment', paymentRoute);
 
-app.use("/*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../ecommerce_frontend/build', 'index.html'));
+app.get("/*", (req, res) => {
+  res.sendFile(__dirname, '../ecommerce_frontend/build', 'index.html');
 });
 
 app.use(globalErrorHandler);
