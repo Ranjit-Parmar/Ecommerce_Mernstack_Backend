@@ -131,7 +131,6 @@ export const updateOrder = asyncErrorHandler(async(req,res,next)=>{
         const err = new customError("order is not found",404);
         return next(err);
     }
-    console.log(orderExists);
 
     if(orderStatus==="delivered"){
         updateProductStock(orderExists.orderItems.product,orderExists.orderItems.quantity,orderExists.orderItems.size);
