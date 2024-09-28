@@ -300,7 +300,7 @@ export const forgotPassword = asyncErrorHandler(async(req,res,next)=>{
     const option = {
         email : userExists.email,
         text : `${process.env.CLIENT_URL}/forgotPassword/reset/${token}`,
-        html : `<a href="${process.env.CLIENT_URL}/forgotPassword/reset/${token}">Click Here</a>`
+        html : `<a href="https://shoppingecommerce-omega.vercel.app/forgotPassword/reset/${token}">Click Here</a>`
     }
 
     const transporter = nodemailer.createTransport({
