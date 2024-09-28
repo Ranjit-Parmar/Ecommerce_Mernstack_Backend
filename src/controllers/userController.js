@@ -323,8 +323,10 @@ export const forgotPassword = asyncErrorHandler(async(req,res,next)=>{
         text: option.text,
         html : option.html
  }
-     await transporter.sendMail(message,(error,response)=>{
+     transporter.sendMail(message,(error,response)=>{
             if(error){
+                console.log("userController line no. 328 error", error);
+                
                 return next(error);
             }
 
