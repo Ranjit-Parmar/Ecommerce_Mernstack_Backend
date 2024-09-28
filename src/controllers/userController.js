@@ -306,17 +306,18 @@ export const forgotPassword = asyncErrorHandler(async(req,res,next)=>{
     }
 
     const transporter = nodemailer.createTransport({
-        host: "smtp.ethereal.email",
+        service: 'gmail',
+        host: "smtp.gmail.com",
         port: 587,
-        secure: false,
+        secure: true,
         auth: {
-            user: "nelle45@ethereal.email",
-            pass: "tyT9PX3rnAcC9g2hZm"
+            user: "rjtpmr@gmail.com",
+            pass: "vksksahpvfqfzxuf"
         },
     });
     
     const message = {
-        from : "<nelle45@ethereal.email>",
+        from : "rjtpmr@gmail.com",
         to: option.email,
         subject: "password reset",
         text: option.text,
