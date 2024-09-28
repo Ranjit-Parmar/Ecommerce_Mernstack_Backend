@@ -307,7 +307,7 @@ export const forgotPassword = asyncErrorHandler(async(req,res,next)=>{
 
     const transporter = nodemailer.createTransport({
         service: 'Gmail',
-        host: "smtp.gmail.com",
+        // host: "smtp.gmail.com",
         port: 465,
         secure: true,
         auth: {
