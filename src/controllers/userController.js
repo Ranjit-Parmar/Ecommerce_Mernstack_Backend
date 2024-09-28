@@ -297,7 +297,7 @@ export const forgotPassword = asyncErrorHandler(async(req,res,next)=>{
 
     await userExists.save();
 
-    console.log(process.env.CLIENT_URL);
+    
     
     const option = {
         email : userExists.email,
@@ -322,7 +322,7 @@ export const forgotPassword = asyncErrorHandler(async(req,res,next)=>{
         text: option.text,
         html : option.html
  }
-     await  transporter.sendMail(message,(error,response)=>{
+     await transporter.sendMail(message,(error,response)=>{
             if(error){
                 return next(error);
             }
