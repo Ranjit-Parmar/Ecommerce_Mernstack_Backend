@@ -48,7 +48,9 @@ app.use(
 
 const __dirname = path.resolve(); 
 
-console.log(path.join(__dirname, "../ecommerce_frontend/build"));
+console.log(__dirname);
+
+app.use(express.static((__dirname, "../ecommerce_frontend/build")));
 
 app.use("/uploads",express.static("uploads"));
 
@@ -69,8 +71,6 @@ app.use('/api/v1/coupon', couponRoute);
 
 //  payment routing
 app.use('/api/v1/payment', paymentRoute);
-
-app.use(express.static(path.join(__dirname, "../ecommerce_frontend/build")));
 
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "../ecommerce_frontend/build","index.html"));
