@@ -40,7 +40,7 @@ app.use(morgan('dev'));
 app.use(
     cors({
         
-        origin: ["https://shoppingecommerce-omega.vercel.app"],
+        origin: [process.env.CLIENT_URL],
         methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
         credentials: true,
     })

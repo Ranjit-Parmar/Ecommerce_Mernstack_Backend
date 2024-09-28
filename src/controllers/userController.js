@@ -300,8 +300,8 @@ export const forgotPassword = asyncErrorHandler(async(req,res,next)=>{
 
     const option = {
         email : userExists.email,
-        text : `${req.protocol}://${req.hostname}:5000/api/v1/user/forgetPassword/reset/${token}`,
-        html : `<a href="${req.protocol}://${req.hostname}:5173/forgotPassword/reset/${token}">Click Here</a>`
+        text : `https://shopping-app-2ow9.onrender.com/api/v1/user/forgetPassword/reset/${token}`,
+        html : `<a href="${process.env.CLIENT_URL}/forgotPassword/reset/${token}">Click Here</a>`
     }
 
     const transporter = nodemailer.createTransport({
