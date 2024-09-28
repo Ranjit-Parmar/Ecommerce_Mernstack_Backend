@@ -1,8 +1,7 @@
 import { User } from '../models/userSchema.js';
 import asyncErrorHandler from '../utils/asyncErrorHandler.js';
-import fs from 'fs';
 import { customError } from '../utils/customError.js';
-import { generateAccessToken, verifyAccessToken } from '../utils/JwtToken.js';
+import { generateAccessToken } from '../utils/JwtToken.js';
 import  nodemailer from 'nodemailer';
 import crypto from 'crypto';
 import { deleteImageHelper, uploadImagesHelper } from '../utils/uploadImages.js';
