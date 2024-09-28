@@ -47,6 +47,9 @@ app.use(
 );
 
 const __dirname = path.resolve(); 
+
+console.log(path.join(__dirname, "../ecommerce_frontend/build"));
+
 app.use("/uploads",express.static("uploads"));
 
 // user routing
