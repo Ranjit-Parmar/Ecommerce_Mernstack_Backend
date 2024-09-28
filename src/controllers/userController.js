@@ -300,7 +300,7 @@ export const forgotPassword = asyncErrorHandler(async(req,res,next)=>{
 
     const option = {
         email : userExists.email,
-        text : `https://shopping-app-2ow9.onrender.com/api/v1/user/forgetPassword/reset/${token}`,
+        text : `${process.env.CLIENT_URL}/forgetPassword/reset/${token}`,
         html : `<a href="${process.env.CLIENT_URL}/forgotPassword/reset/${token}">Click Here</a>`
     }
 
