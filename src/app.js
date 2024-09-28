@@ -48,8 +48,6 @@ app.use(
 
 const __dirname = path.resolve(); 
 
-console.log(__dirname);
-
 app.use(express.static((__dirname, "../ecommerce_frontend/build")));
 
 app.use("/uploads",express.static("uploads"));
@@ -73,7 +71,7 @@ app.use('/api/v1/coupon', couponRoute);
 app.use('/api/v1/payment', paymentRoute);
 
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "../ecommerce_frontend/build","index.html"));
+  res.sendFile(path.resolve(__dirname, '../ecommerce_frontend', 'build', 'index.html'));
 });
 
 app.use(globalErrorHandler);
