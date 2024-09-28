@@ -23,7 +23,7 @@ export const createUser = asyncErrorHandler(async (req, res, next) => {
 
     const user = await User.findOne({email});
     if(user){
-        const err = new customError("user with this email is already exists in database");
+        const err = new customError("user with this email is already exists in database", 409);
         return next(err);
     }
 
