@@ -31,7 +31,6 @@ export const uploadImagesHelper = async (files) => {
 
 
 export const deleteImageHelper = async (publicId) => {  
-    console.log(publicId);
      
     
    const promise = publicId &&  publicId?.map((val)=>{
