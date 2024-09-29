@@ -218,7 +218,7 @@ export const deleteUser = asyncErrorHandler(async(req,res,next)=>{
     }
 
     // delete photo from the cloudinary
-    await deleteImageHelper(userExist.photo.public_id);
+    await deleteImageHelper(userExist?.photo?.public_id);
     // deleting user
      await User.findByIdAndDelete(id);
 
