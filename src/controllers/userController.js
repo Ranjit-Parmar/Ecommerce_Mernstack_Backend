@@ -222,15 +222,17 @@ export const deleteUser = asyncErrorHandler(async(req,res,next)=>{
 
     if(userExist?.photo) {
      await deleteImageHelper(userExist?.photo?.public_id);
+    }else{
+        
+        // deleting user
+         await User.findByIdAndDelete(id);
+    
+        res.status(200).json({
+            success : true,
+            message : "user is deleted successfully"
+        })
     }
     
-    // deleting user
-     await User.findByIdAndDelete(id);
-
-    res.status(200).json({
-        success : true,
-        message : "user is deleted successfully"
-    })
      
 })
 
