@@ -297,6 +297,7 @@ export const forgotPassword = asyncErrorHandler(async(req,res,next)=>{
 
     await userExists.save();
 
+    console.log(userExists.email);
     
     
     const option = {
