@@ -295,10 +295,7 @@ export const forgotPassword = asyncErrorHandler(async(req,res,next)=>{
 
     const token = await userExists.generatePasswordResetToken();
 
-    await userExists.save();
-
-    console.log(userExists.email);
-    
+    await userExists.save();    
     
     const option = {
         email : userExists.email,
