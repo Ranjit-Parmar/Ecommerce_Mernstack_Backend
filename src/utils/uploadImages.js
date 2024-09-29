@@ -30,7 +30,9 @@ export const uploadImagesHelper = async (files) => {
 
 
 
-export const deleteImageHelper = async (publicId) => {   
+export const deleteImageHelper = async (publicId) => {  
+    console.log(publicId);
+     
     
    const promise = publicId &&  publicId?.map((val)=>{
     return new Promise((resolve,reject)=>{
