@@ -84,6 +84,7 @@ export const getAllProducts = asyncErrorHandler(async (req, res, next) => {
         totalPages : totalPages,
         productPerPage : Number(productPerPage),
         filteredProducts : filteredProducts.length,
+        Products : filteredProducts,
         allProducts,
     })
 })
