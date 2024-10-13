@@ -275,6 +275,8 @@ export const updateUser = asyncErrorHandler(async(req,res,next)=>{
     }
     
      
+    console.log(updateUserData);
+    
     await User.findByIdAndUpdate(id, updateUserData,{new:true});
     
     res.status(200).json({
