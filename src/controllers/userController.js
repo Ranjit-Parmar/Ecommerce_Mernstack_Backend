@@ -254,9 +254,8 @@ export const updateUser = asyncErrorHandler(async(req,res,next)=>{
         updateUserData.email = email
     }
     if(password){
-        // userExist.password = password
-        // await userExist.save();
-        updateUserData.password = password
+        userExist.password = password
+        await userExist.save();
     } 
     if(role){
         updateUserData.role = role
