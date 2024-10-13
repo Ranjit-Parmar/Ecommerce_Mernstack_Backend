@@ -246,37 +246,28 @@ export const updateUser = asyncErrorHandler(async(req,res,next)=>{
     
     // find use with given ID
     const userExist = await User.findById(id);
-    const updateUserData = {};
-    if(name){
-        updateUserData.name = name
-    }
-    if(email){
-        updateUserData.email = email
-    }
-    if(password){
-        userExist.password = password
-        await userExist.save();
-    } 
-    if(role){
-        updateUserData.role = role
-    }
-    if(photo){
-        if(userExist?.photo?.public_id){
-            await deleteImageHelper(userExist?.photo?.public_id);
-        }
-        const imageData = await uploadImagesHelper(photo);
-        updateUserData.photo = imageData
-    }
 
     if(!userExist){
         const err = new customError("user is not found",404);
         return next(err);
     }
     
-     
-    console.log(updateUserData);
     
-    await User.findByIdAndUpdate(id, updateUserData,{new:true});
+    
+    const imageData = await uploadImagesHelper(photo);
+    await deleteImageHelper(userExist?.photo?.public_id);
+    
+    
+    if(password){
+        userExist.password = password
+        await userExist.save();
+    } 
+    await User.findByIdAndUpdate(id, {
+        name,
+        email,
+        role,
+        photo : imageData
+    },{new:true});
     
     res.status(200).json({
         success : true,
