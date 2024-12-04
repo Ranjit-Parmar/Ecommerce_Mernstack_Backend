@@ -1,8 +1,8 @@
 dotenv.config();
+import dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
-import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import userRoute from './routes/userRoute.js';
 import productRoute from './routes/productRoute.js';

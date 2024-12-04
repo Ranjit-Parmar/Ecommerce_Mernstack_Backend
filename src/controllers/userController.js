@@ -276,7 +276,6 @@ export const updateUser = asyncErrorHandler(async(req,res,next)=>{
 })
 
 // FORGOT PASSWORD
-
 export const forgotPassword = asyncErrorHandler(async(req,res,next)=>{
     const {email} = req.body;
     
@@ -303,19 +302,19 @@ export const forgotPassword = asyncErrorHandler(async(req,res,next)=>{
         html : `<a href="https://shoppingecommerce-omega.vercel.app/forgotPassword/reset/${token}">Click Here</a>`
     }
 
+
     const transporter = nodemailer.createTransport({
-        service: 'Gmail',
-        // host: "smtp.gmail.com",
-        port: 465,
+        service: process.env.SERVICE,
+        port: process.env.SMTP_PORT,
         secure: true,
         auth: {
-            user: "rjtpmr@gmail.com",
-            pass: "vksksahpvfqfzxuf"
+            user: process.env.SMTP_USER,
+            pass: process.env.SMTP_PASS
         },
     });
     
     const message = {
-        from : "rjtpmr@gmail.com",
+        from : process.env.SMTP_USER,
         to: option.email,
         subject: "password reset",
         text: option.text,
