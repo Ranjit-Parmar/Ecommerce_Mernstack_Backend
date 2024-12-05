@@ -1,5 +1,5 @@
-dotenv.config();
 import dotenv from 'dotenv';
+dotenv.config({path:'ecommerce_backend/.env'});
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
